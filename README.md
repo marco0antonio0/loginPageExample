@@ -1,5 +1,5 @@
 # 🚀 loginPageExample
-![img](/images/publicidade.png)
+![img](/publicidade.png)
 ## 📌 Introdução
 
 Este projeto é uma página de login simples, desenvolvida como um exemplo de código para quem está aprendendo Next.js e Tailwind CSS. O objetivo é fornecer um modelo funcional e bem estruturado para servir como ponto de partida ou referência em projetos futuros. Este projeto foi feito para desenvolvedores iniciantes e intermediários que desejam aprender ou aprimorar suas habilidades em desenvolvimento web com Next.js e Tailwind CSS, resolvendo a necessidade de ter um exemplo prático e bem documentado de uma página de login.
