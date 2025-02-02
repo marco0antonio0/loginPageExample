@@ -17,13 +17,14 @@ const geistMono = localFont({
 export default function Home() {
   const [credentials, setCredentials] = useState({ name: "", password: "" });
   const [errors, setErrors] = useState({ name: false, password: false });
+  const [loading, setLoading] = useState(false);
 
   function changeCredentials(param:string, value:any) {
     setCredentials((prev) => ({ ...prev, [param]: value.target.value }));
     setErrors((prev) => ({ ...prev, [param]: value.target.value.trim() === "" }));
   }
 
-  function checkFildsIsEmpty(){
+  function checkFildsIsEmpty() {
     let newErrors = {
       name: credentials.name.trim() === "",
       password: credentials.password.trim() === "",
@@ -31,18 +32,25 @@ export default function Home() {
     setErrors(newErrors);
 
     if (!newErrors.name && !newErrors.password) {
-      console.log(credentials);
+      return true
     }
+    return false
   }
 
   function onClickButton() {
-    checkFildsIsEmpty()
     // ==============================
     // ******************************
     // Adicione aqui sua autenticacao
     // ******************************
-    const {name,password} = credentials
+    if(checkFildsIsEmpty()){
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        console.log(credentials);
+      }, 3000);
+    }
     // 
+    const {name,password} = credentials
   }
 
   return (
@@ -70,8 +78,8 @@ export default function Home() {
             <input type="password" className={`m-auto mt-0 mb-0 w-[100%] h-14 rounded-lg ${errors.password?"border-red-500":"border-gray-200"}  border-2 px-5 sm:h-12`} placeholder="" onChange={(e)=>changeCredentials('password',e)}/>
             {errors.password && <span className="text-red-500 text-sm mt-1">Password is required</span>}
             <div className="h-5"></div>
-            <button className="align-middle items-center w-[100%] h-14 border-2 border-gray-200 rounded-md mt-0" onClick={()=>onClickButton()}>
-              Sign in
+            <button className="align-middle w-[100%] h-14 border-2 border-gray-200 rounded-md mt-0 flex justify-center items-center" onClick={onClickButton}>
+                {loading ? <span className="loader border-4 border-black border-t-transparent rounded-full w-6 h-6 animate-spin"></span> : "Sign in"}
             </button>
             <div className="h-1"></div>
             <span className="m-auto"></span>
